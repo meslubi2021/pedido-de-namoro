@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>Pedido - Aceitas?</title>
+    <style>
+        body {
+            background-color: #ffc8dd;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #590d22;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 300px;
+        }
+        
+        button1 {
+            background-color: #ffb3c1;
+            border: 3px ridge;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin-top: 10px;
+            margin-left: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position:absolute;
+            }
+
+        button2 {
+            background-color: #ffb3c1;
+            border: 3px ridge;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin-top: 10px;
+            margin-left: -40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position:absolute;
+            
+            }
+            
+            
+    </style>
+</head>
+<body>
+    <h1>Quer namorar comigo?</h1>
+    <button1 id="button1" onclick="denied()" style="cursor: not-allowed;" >Não</button1>
+    <button2 onclick="accepted()" style="cursor: pointer;" >Sim</button2>
+
+    <script>
+        function moveButton(event) {
+            var button = document.getElementById('button1');
+            var mouseX = event.clientX;
+            var mouseY = event.clientY;
+
+            var buttonX = button.offsetLeft + button.offsetWidth / 2;
+            var buttonY = button.offsetTop + button.offsetHeight / 2;
+
+            var deltaX = Math.abs(mouseX - buttonX);
+            var deltaY = Math.abs(mouseY - buttonY);
+
+            if (deltaX < 50 && deltaY < 40) {
+                var maxX = document.documentElement.clientWidth - button.offsetWidth;
+                var maxY = document.documentElement.clientHeight - button.offsetHeight;
+
+                var newX = Math.floor(Math.random() * maxX);
+                var newY = Math.floor(Math.random() * maxY);
+
+                button.style.left = newX + 'px';
+                button.style.top = newY + 'px';
+            }
+        }
+
+        function accepted() {
+            alert('Maravilha, me manda mensagem.');
+            
+        }
+
+        function denied() {
+            var button1 = document.getElementById('button1');
+            button.parentNode.removeChild(button1);
+        }
+
+        document.addEventListener('mousemove', moveButton);
+    </script>
+</body>
+</html>
